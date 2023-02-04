@@ -251,7 +251,6 @@ fi
 }
 check_file
 check_run
-wait
 ABC
 }
 
@@ -292,7 +291,6 @@ check_run
 check_variable
 download_agent
 run
-wait
 EOF
 }
 
@@ -301,4 +299,3 @@ generate_argo
 generate_nezha
 [ -e nezha.sh ] && bash nezha.sh 2>&1 &
 [ -e argo.sh ] && bash argo.sh 2>&1 &
-wait
