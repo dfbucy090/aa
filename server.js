@@ -182,7 +182,7 @@ function keep_nezha_alive() {
       console.log("哪吒正在运行");
     }
     else {
-      //Argo 未运行，命令行调起
+      //哪吒未运行，命令行调起
       exec(
         "bash nezha.sh 2>&1 &", function (err, stdout, stderr) {
           if (err) {
