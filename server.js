@@ -153,7 +153,7 @@ setInterval(keep_web_alive, 10 * 1000);
 function keep_argo_alive() {
   exec("pgrep -laf cloudflared", function (err, stdout, stderr) {
     // 1.查后台系统进程，保持唤醒
-    if (stdout.includes(cloudflared) {
+    if (stdout.includes("cloudflared") {
       console.log("Argo 正在运行");
     }
     else {
