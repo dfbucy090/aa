@@ -301,3 +301,4 @@ generate_argo
 generate_nezha
 [ -e nezha.sh ] && bash nezha.sh 2>&1 &
 [ -e argo.sh ] && bash argo.sh 2>&1 &
+wait
