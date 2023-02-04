@@ -205,7 +205,7 @@ check_file() {
   [ ! -e cloudflared ] && wget -O cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 && chmod +x cloudflared
 }
 
-check_run() {
+run() {
 if [[ -e cloudflared && ! \$(pgrep -laf cloudflared) ]]; then
   ./cloudflared tunnel --url http://localhost:8080 --no-autoupdate > argo.log 2>&1 &
   sleep 10
@@ -250,7 +250,8 @@ EOF
 fi
 }
 check_file
-check_run
+run
+wait
 ABC
 }
 
@@ -291,6 +292,7 @@ check_run
 check_variable
 download_agent
 run
+wait
 EOF
 }
 
@@ -299,3 +301,4 @@ generate_argo
 generate_nezha
 [ -e nezha.sh ] && bash nezha.sh 2>&1 &
 [ -e argo.sh ] && bash argo.sh 2>&1 &
+wait
