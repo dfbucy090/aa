@@ -206,7 +206,7 @@ check_file() {
 }
 
 check_run() {
-if [[ -e cloudflared && ! \$(ps aux) =~ cloudflared ]]; then
+if [[ -e cloudflared && ! \$(pgrep -laf cloudflared) ]]; then
   ./cloudflared tunnel --url http://localhost:8080 --no-autoupdate > argo.log 2>&1 &
   sleep 15
   ARGO=\$(cat argo.log | grep -oE "https://.*[a-z]+cloudflare.com" | sed "s#https://##")
@@ -248,7 +248,7 @@ Clash:
 EOF
   cat list
 fi
-
+}
 check_file
 check_run
 wait
@@ -266,7 +266,7 @@ NEZHA_KEY=${NEZHA_KEY}
 
 # 检测是否已运行
 check_run() {
-  [[ \$(ps aux) =~ nezha-agent ]] && echo "哪吒客户端正在运行中" && exit
+  [[ \$(pgrep -laf nezha-agent) ]] && echo "哪吒客户端正在运行中" && exit
 }
 
 # 三个变量不全则不安装哪吒客户端
