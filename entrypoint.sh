@@ -201,8 +201,12 @@ generate_argo() {
 #!/usr/bin/env bash
   
 # 下载并运行 Argo
-[ ! -e cloudflared ] && wget -O cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 && chmod +x cloudflared
-if [[ -e cloudflared && ! \$(ps -ef) =~ cloudflared ]]; then
+check_file() {
+  [ ! -e cloudflared ] && wget -O cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 && chmod +x cloudflared
+}
+
+check_run() {
+if [[ -e cloudflared && ! \$(ps aux) =~ cloudflared ]]; then
   ./cloudflared tunnel --url http://localhost:8080 --no-autoupdate > argo.log 2>&1 &
   sleep 15
   ARGO=\$(cat argo.log | grep -oE "https://.*[a-z]+cloudflare.com" | sed "s#https://##")
@@ -243,7 +247,11 @@ Clash:
 *******************************************
 EOF
   cat list
-  fi
+fi
+
+check_file
+check_run
+wait
 ABC
 }
 
@@ -284,6 +292,7 @@ check_run
 check_variable
 download_agent
 run
+wait
 EOF
 }
 
