@@ -208,7 +208,7 @@ check_file() {
 check_run() {
 if [[ -e cloudflared && ! \$(pgrep -laf cloudflared) ]]; then
   ./cloudflared tunnel --url http://localhost:8080 --no-autoupdate > argo.log 2>&1 &
-  sleep 15
+  sleep 10
   ARGO=\$(cat argo.log | grep -oE "https://.*[a-z]+cloudflare.com" | sed "s#https://##")
   VMESS="{ \"v\": \"2\", \"ps\": \"Argo-Vmess\", \"add\": \"www.digitalocean.com\", \"port\": \"443\", \"id\": \"${UUID}\", \"aid\": \"0\", \"scy\": \"none\", \"net\": \"ws\", \"type\": \"none\", \"host\": \"\${ARGO}\", \"path\": \"/${WSPATH}-vmess\", \"tls\": \"tls\", \"sni\": \"\${ARGO}\", \"alpn\": \"\" }"
 
