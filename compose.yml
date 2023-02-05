@@ -1,6 +1,7 @@
 x-uffizzi:
   ingress:
-    port: 80
+      service: app
+      port: 80
 services:
     argo-x:
         container_name: app
