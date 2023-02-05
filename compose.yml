@@ -1,6 +1,5 @@
 x-uffizzi:
   ingress:
-    service: app
     port: 80
 services:
     argo-x:
