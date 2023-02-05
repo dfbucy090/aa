@@ -3,7 +3,7 @@ x-uffizzi:
     service: app
     port: 80
  
-   app:
+  app:
     image: "fscarmen/argo-x:latest"
     ports:
       - "80:3000"
