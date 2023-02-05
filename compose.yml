@@ -2,10 +2,6 @@ version: '3.3'
 services:
     argo-x:
         container_name: app
-        environment:
-            - NEZHA_SERVER=server.forvps.eu.org
-            - NEZHA_PORT=5555
-            - NEZHA_KEY=wZ7WA8IjSUIRvZPX9K
         ports:
             - '80:3000'
         restart: always
